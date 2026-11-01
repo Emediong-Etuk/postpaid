@@ -1,0 +1,26 @@
+# secrets — never commit
+.env
+.env.*
+!.env.example
+*.keystore
+keystore/
+
+# foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/*/31337/
+contracts/broadcast/**/dry-run/
+lcov.info
+
+# arc studio cli local state
+.arc-studio/
+
+# node / app
+node_modules/
+.next/
+dist/
+.vercel/
+
+# os / editor
+.DS_Store
+*.log

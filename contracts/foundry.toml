@@ -1,0 +1,35 @@
+# PostPaid contracts — Arc Foundry project (arc-forge / arc-cast / arc-anvil).
+# Run tests under Arc execution rules:  FOUNDRY_PROFILE=arc arc-forge test
+# Check what was resolved:              FOUNDRY_PROFILE=arc arc-forge config --json | grep -E '"network"|"hardfork"'
+
+[profile.default]
+src = "src"
+test = "test"
+script = "script"
+out = "out"
+libs = ["lib"]
+solc = "0.8.38"          # pinned; ^0.8.24 per spec. Re-check against Arc Studio's default in Phase 1.
+evm_version = "prague"   # Arc mainnet genesis enables up to Osaka; prague is the conservative choice.
+optimizer = true
+optimizer_runs = 200
+via_ir = false
+remappings = [
+  "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+  "forge-std/=lib/forge-std/src/",
+]
+
+[profile.default.fuzz]
+runs = 1000
+
+[profile.default.invariant]
+runs = 256
+depth = 64
+fail_on_revert = false
+
+# Arc execution semantics (blocklist, USDC-as-gas, Arc precompiles).
+[profile.arc]
+network = "arc"
+
+[rpc_endpoints]
+arc = "https://rpc.mainnet.arc.io"
+arc_testnet = "https://rpc.testnet.arc.io"
