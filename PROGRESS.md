@@ -9,8 +9,8 @@
 |---|---|
 | 0 — Setup & discovery | ✅ done |
 | 1 — Contract (in Arc Studio) | ✅ done (deviations approved 2026-11-02) |
-| 2 — Tests | ✅ done: 155/155 green, 100% coverage, waiting for "go" |
-| 3 — Security & testnet | — |
+| 2 — Tests | ✅ done: 155/155 green, 100% coverage |
+| 3 — Security & testnet | 🔄 SECURITY.md ✅, testnet deploy ✅ + verified ✅; demo waiting on faucet funding |
 | 4 — App | — |
 | 5 — Mainnet deploy | — |
 | 6 — Mainnet demo | — |
@@ -18,8 +18,12 @@
 
 ## Next action
 
-1. Greg: say "go" for Phase 3, and send an **EVM wallet B** (0x…) plus confirm whether Claude may create throwaway **testnet-only** wallets in the sandbox for the scripted rehearsal.
-2. Claude (Phase 3): write `docs/SECURITY.md` (§7 checklist + attacker read-through), run Slither locally, have Studio deploy to **Arc Testnet**, verify the source on the testnet explorer (Blockscout), then run the §9 demo flow with `arc-cast` and record the tx hashes.
+1. Greg: fund the testnet brand wallet `0xceb064097AEc90d68302DE251C8f6dea662d4E22` with Arc Testnet USDC from https://faucet.circle.com (≥ 2 USDC).
+2. Claude: run `scripts/demo-testnet.sh 0x4e51c6f82fb8dadd51d650607f05cbb937d3cfe5` (~25 min), record the hashes in `docs/testnet-demo.tsv` and `docs/TRANSACTIONS.md`, close Phase 3.
+3. Still needed before Phase 6 (mainnet demo): an **EVM wallet B** (0x…).
+
+## Testnet wallets (throwaway, testnet only)
+Encrypted keystores in `~/.foundry/keystores/pp-testnet-{brand,creator,keeper}`, with the password in `~/.postpaid-testnet/pw` (0600, never committed). They live only in this container: if it's recycled, make new ones (`arc-cast wallet new`) and re-fund them. They must never hold mainnet funds.
 
 ## Mode
 
@@ -92,6 +96,7 @@ New details:
 - 2026-11-01: `solc 0.8.38`, `evm_version = "prague"`.
 - 2026-11-02: switched to `evm_version = "osaka"`: docs say Arc targets Osaka, and Arc Foundry defaults to it.
 - 2026-11-02: Phase 1 contract generated in Studio (turn #1); local copy is byte-identical to Studio's.
+- 2026-11-02: contract source verification uses the Blockscout v2 API (`scripts/verify-blockscout.sh`), because `arc-forge verify-contract` needs binaries.soliditylang.org (blocked here). The testnet contract is fully verified.
 - 2026-11-02: Phase 2 tests generated in Studio (turn #2): 155 tests, 100% coverage, no contract changes. The smoke test was removed (superseded).
 - 2026-11-01: libraries are OZ v5.6.1 and forge-std v1.17.0, as submodules.
 

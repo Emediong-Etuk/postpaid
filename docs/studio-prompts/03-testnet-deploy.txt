@@ -1,0 +1,16 @@
+PHASE 3: deploy contracts/PostPaidEscrow.sol (unchanged; 155 tests green last turn) to ARC TESTNET (chain id 5042002) — testnet only, not mainnet.
+
+Constructor arguments, exactly:
+- usdc           = 0x3600000000000000000000000000000000000000   (Arc USDC ERC-20 interface, 6 decimals)
+- initialOwner   = 0x553f9D115bCCafD5d4b4a254f2B2d6E23B66CA17
+- feeRecipient   = 0x553f9D115bCCafD5d4b4a254f2B2d6E23B66CA17
+- initialFeeBps  = 100
+
+Rules:
+1. Run `forge test` first; only deploy if everything is green.
+2. Use the same compiler settings as the tests (solc 0.8.38, evm_version osaka, optimizer on, 200 runs) so the source can be verified on the Blockscout explorer.
+3. Make sure maxFeePerGas is at least 20 gwei (Arc's mempool floor).
+4. After deploying, read back usdc(), owner(), feeRecipient(), protocolFeeBps(), nextDealId() and paused() from the deployed contract to confirm the constructor args.
+5. Do NOT build or change the frontend yet. Do NOT change the contract.
+
+In your final answer give: (a) the contract address, (b) the deployment tx hash, (c) the block number, (d) the explorer links, (e) the read-back values, (f) the exact compiler settings used.
