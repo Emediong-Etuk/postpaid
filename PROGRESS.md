@@ -7,8 +7,8 @@
 
 | Phase | Status |
 |---|---|
-| 0 — Setup & discovery | ✅ done, waiting for Greg's "go" + answers below |
-| 1 — Contract (in Arc Studio) | ⏳ blocked on network allowlist + Studio token |
+| 0 — Setup & discovery | ✅ done |
+| 1 — Contract (in Arc Studio) | 🔄 in progress (Studio app `7dce8f44-1629-4058-a90d-748aee960e78`) |
 | 2 — Tests | — |
 | 3 — Security & testnet | — |
 | 4 — App | — |
@@ -69,8 +69,22 @@ docs.arc.io, developers.circle.com and studio.arc.io are **blocked** from this s
 
 Nothing contradicts §4 so far.
 
+## Arc Studio project
+- App URL: https://studio.arc.io/app/7dce8f44-1629-4058-a90d-748aee960e78
+- CLI session name: `postpaid`. Always call the CLI through `scripts/studio.sh`: it sets `NODE_USE_ENV_PROXY=1` and the sandbox CA bundle. Without them the CLI wrongly reports "token rejected", because Node's fetch ignores the proxy.
+- Plan: free. Prompts sent are kept in `docs/studio-prompts/`.
+
+## §4 re-verified on docs.arc.io (2026-11-02)
+Every §4 fact is confirmed by docs.arc.io (`arc/references/evm-differences.md`, `connect-to-arc.md`), including PREVRANDAO = 0, the 20 gwei `maxFeePerGas` floor (lower is silently dropped), non-decreasing timestamps, and the blocklist.
+New details:
+- **Arc targets the Osaka EVM** → `evm_version = "osaka"` (was prague).
+- Native USDC `Transfer` logs (EIP-7708) come from the system emitter `0xffffFFFfFFffffffffffffffFfFFFfffFFFfFFfE`, so the app timeline must use PostPaid's own events.
+- A value transfer to `address(0)` reverts. A blocklist revert still consumes gas.
+- **Contract verification:** Blockscout, via `arc-forge verify-contract <addr> src/X.sol:X --chain-id <id> --verifier blockscout --verifier-url https://explorer.testnet.arc.io/api/` (testnet example from `build/deploy-on-arc.md`; mainnet presumably `https://explorer.arc.io/api/`, to confirm in Phase 5).
+
 ## Decisions log
-- 2026-11-01: `solc 0.8.38`, `evm_version = "prague"` (conservative; Arc supports Osaka). Revisit if Studio's default differs.
+- 2026-11-01: `solc 0.8.38`, `evm_version = "prague"`.
+- 2026-11-02: switched to `evm_version = "osaka"`: docs say Arc targets Osaka, and Arc Foundry defaults to it.
 - 2026-11-01: libraries are OZ v5.6.1 and forge-std v1.17.0, as submodules.
 
 ## Answers received (2026-11-02)

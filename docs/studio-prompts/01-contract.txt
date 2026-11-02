@@ -1,0 +1,12 @@
+Project: PostPaid — USDC milestone escrow for creator campaigns (brands lock USDC up front, creators get paid per milestone, silence = approval after a review window). Target chain: Arc (USDC ERC-20 at 0x3600000000000000000000000000000000000000, 6 decimals).
+
+This turn is PHASE 1: the smart contract only. Default preset.
+
+1. Write ONE contract at contracts/PostPaidEscrow.sol that implements the attached spec (context/docs/spec/PostPaidEscrow.spec.md) EXACTLY: every function, rule, timing boundary, money-math formula, event, custom error, constant and view function, plus the binding clarifications in section 5.10.
+2. Use OpenZeppelin Contracts v5.6.1 (install it with forge if it isn't in the project): SafeERC20, ReentrancyGuard, Ownable2Step, Pausable. Constructor: (IERC20 usdc, address initialOwner, address feeRecipient, uint16 initialFeeBps).
+3. Hard rules: no payable functions, no receive/fallback, no msg.value; pull payments only (all outflows credited to withdrawable[], paid by withdraw()); owner can never move escrowed funds; pause blocks createDeal ONLY; balance-delta check on deposit (AmountMismatch); checks-effects-interactions everywhere; no unchecked blocks; no tx.origin; loops bounded by MAX_MILESTONES; full NatSpec on every external function saying who can call it and when; document the two timing boundaries (submit <= dueBy vs refund > dueBy; review actions < submittedAt+reviewPeriod vs timeout claim >= it). Aim for about 400 lines; readable beats clever.
+4. Compile with solc 0.8.38, evm_version osaka, optimizer on, 200 runs. Fix any "stack too deep" with internal helpers — do not change the external interface.
+5. Run your security review/audit on the contract and fix real findings.
+6. Do NOT deploy. Do NOT build a frontend. Do NOT write the full test suite yet (next turn). A tiny compile/smoke test is fine.
+
+In your final answer list: (a) every deviation from the spec and why (say "none" if none), (b) each security-review finding and how it was resolved, (c) the compiler settings used, (d) the file paths you wrote.
