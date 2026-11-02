@@ -1,13 +1,15 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
-import { ConnectKitButton } from 'connectkit'
 import { useAccount, useSwitchChain } from 'wagmi'
 import { TokenUSDC } from '@web3icons/react'
 import { toast } from 'sonner'
 import { ACTIVE_CHAIN } from '@/postpaid'
 import { useUsdc } from '@/hooks/useEscrow'
-import { fmtUsdc } from '@/lib/format'
+import { formatUnitsFixed, formatUsdc } from '@/onchain-money'
+import { USDC_DECIMALS } from '@/postpaid'
 import { describeError } from '@/lib/errors'
 import { Button } from './ui'
+import { ConnectButton } from './ConnectButton'
+import { StudioBadge } from './StudioBadge'
 
 function Logo() {
   return (
@@ -27,10 +29,10 @@ function UsdcBalance() {
   return (
     <span
       className="hidden items-center gap-1.5 rounded-full border border-line bg-white/70 px-3 py-1.5 text-sm font-semibold tabular-nums sm:inline-flex"
-      title="Your USDC balance. Network fees are also paid in USDC."
+      title={data ? `${formatUsdc(data.balance)} USDC. Network fees are also paid in USDC.` : 'Your USDC balance. Network fees are also paid in USDC.'}
     >
       <TokenUSDC variant="branded" size={16} />
-      {data ? fmtUsdc(data.balance) : '...'}
+      {data ? `${formatUnitsFixed(data.balance, USDC_DECIMALS, 2)} USDC` : '...'}
     </span>
   )
 }
@@ -82,13 +84,7 @@ export function Layout() {
           </div>
           <div className="flex items-center gap-2">
             <UsdcBalance />
-            <ConnectKitButton.Custom>
-              {({ isConnected, show, truncatedAddress, isConnecting }) => (
-                <Button variant={isConnected ? 'secondary' : 'primary'} size="sm" onClick={show} loading={isConnecting}>
-                  {isConnected ? truncatedAddress : 'Connect wallet'}
-                </Button>
-              )}
-            </ConnectKitButton.Custom>
+            <ConnectButton />
           </div>
         </div>
         <nav className="flex border-t border-line px-2 sm:hidden" aria-label="Main mobile">
@@ -101,12 +97,15 @@ export function Layout() {
         </nav>
         <WrongNetworkBanner />
       </header>
-      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6 sm:py-10">
+      <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-6 sm:pb-28 sm:pt-10">
         <Outlet />
       </main>
-      <footer className="border-t border-line px-4 pb-20 pt-6 text-center text-sm text-muted">
+      <footer className="border-t border-line px-4 pb-6 pt-6 text-center text-sm text-muted sm:pb-20">
         <p className="font-semibold text-ink-2">Not audited — use small amounts.</p>
         <p className="mt-1 text-xs">Network fees on Arc are paid in USDC. Escrowed funds can never be moved by the contract owner.</p>
+        <div className="mt-4 flex justify-center sm:hidden">
+          <StudioBadge variant="inline" />
+        </div>
       </footer>
     </div>
   )

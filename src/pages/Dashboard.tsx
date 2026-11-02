@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ConnectKitButton } from 'connectkit'
+import { ConnectButton } from '@/components/ConnectButton'
 import { useAccount } from 'wagmi'
 import { ChevronRight } from 'lucide-react'
 import clsx from 'clsx'
@@ -91,7 +91,7 @@ export function Dashboard() {
       <div className="card mx-auto max-w-md space-y-4 p-8 text-center">
         <h1 className="display text-2xl font-bold">Your dashboard</h1>
         <p className="text-pretty text-sm text-muted">Connect your wallet to see your deals and withdraw your USDC.</p>
-        <ConnectKitButton />
+        <ConnectButton size="md" />
       </div>
     )
   }

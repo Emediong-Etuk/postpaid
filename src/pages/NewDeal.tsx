@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ConnectKitButton } from 'connectkit'
+import { ConnectButton } from '@/components/ConnectButton'
 import { erc20Abi } from 'viem'
 import { useAccount } from 'wagmi'
 import { Plus, Trash2 } from 'lucide-react'
@@ -128,7 +128,7 @@ export function NewDeal() {
       <div className="card mx-auto max-w-md space-y-4 p-8 text-center">
         <h1 className="display text-2xl font-bold">Create a deal</h1>
         <p className="text-pretty text-sm text-muted">Connect the brand wallet that will lock the USDC.</p>
-        <ConnectKitButton />
+        <ConnectButton size="md" />
       </div>
     )
   }

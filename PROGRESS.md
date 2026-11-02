@@ -12,15 +12,16 @@
 | 2 — Tests | ✅ done: 155/155 green, 100% coverage |
 | 3 — Security & testnet | ✅ done: SECURITY.md, testnet deploy + verified, full demo run on testnet (11 txs) |
 | 4 — App | ✅ built in Studio; E2E-tested on a testnet fork (create → accept → submit → approve → withdraw) |
-| 5 — Mainnet deploy | — |
+| 5 — Mainnet deploy | 🔄 UI polished ✅, deploy script rehearsed ✅; waiting on Greg: Vercel deploy click, deploy option A/B, mainnet USDC |
 | 6 — Mainnet demo | — |
 | 7 — Ship | — |
 
 ## Next action
 
-1. Greg: say "go" for Phase 5. Before that, connect **Vercel** (free) in Arc Studio → Integrations menu → "Connect Vercel", so Studio can host the app at a public URL.
-2. Greg (Phase 5 → 6): an **EVM wallet B** (0x…) and **~2 USDC on Arc mainnet** in wallet A (+ ~0.3 in B).
-3. Claude (Phase 5): one Studio turn for the small UI fixes (ENS lookups, badge overlap, balance label); public deploy of the **testnet** build first, so Greg can click through with a real wallet; then prepare the mainnet deploy (Greg signs), verify the source, switch the env to mainnet and redeploy.
+1. Greg: in Arc Studio, open **Integrations → Deploy to Vercel** (leave env vars empty, so it builds for testnet) and send Claude the URL. Claude checks it in a fresh browser, then Greg clicks through on testnet with wallet A (faucet USDC).
+2. Greg: choose the mainnet deploy option in `docs/MAINNET_DEPLOY.md`: **A** (browser-wallet deploy page, needs OK) or **B** (Arc Foundry CLI with an encrypted keystore).
+3. Greg: get **≥ 2 USDC on Arc mainnet** into wallet A (deploy ≈ 0.07 + demo 0.90 + gas), and create an **EVM wallet B** (0x…) with ≈ 0.30 USDC.
+4. Claude, after the deploy: verify bytecode and constructor on-chain, verify the source with `scripts/verify-blockscout.sh mainnet`, set the Vercel env (`VITE_CHAIN=arc`, address, block), redeploy, re-test.
 
 ## Testnet wallets (throwaway, testnet only)
 Encrypted keystores in `~/.foundry/keystores/pp-testnet-{brand,creator,keeper}`, with the password in `~/.postpaid-testnet/pw` (0600, never committed). They live only in this container: if it's recycled, make new ones (`arc-cast wallet new`) and re-fund them. They must never hold mainnet funds.
