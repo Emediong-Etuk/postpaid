@@ -1,0 +1,4 @@
+step	actor	action	tx
+0a	pp-testnet-brand	gas top-up → creator (0.30 USDC)	0x41249cc24259ad6555f367073cfcb10e7c4727ccd4de53fcb5e51f0dbca67517
+0b	pp-testnet-brand	gas top-up → keeper (0.30 USDC)	0xdd881e6abcb231d8d588128e120696cf07d223f8dac95087efde0e93f4c5fd1c
+1	pp-testnet-brand	approve 0.90 USDC	0x814ffac36df36bf83d012c838bae94bb32ffff43e6b5c42e5d19d33c6270e9fa
