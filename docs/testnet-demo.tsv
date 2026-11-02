@@ -8,3 +8,4 @@ step	actor	action	tx
 5	pp-testnet-brand	approveMilestone M1	0xbbc0f1851af3f2e171d311d69757638f6a2d78b57ecc536ee50e1663775f4244
 6	pp-testnet-creator	withdraw (creator, 0.297 USDC)	0xf5738180438b60af7149bced08a379e0a67c33e39868847c12b7cc54c668e93a
 7a	pp-testnet-creator	submitMilestone M2	0x3468ffb6884b585a4ec2b0b1da0e61609fc60439e07bf061ceb4981ac0450c35
+7b	pp-testnet-keeper	claimAfterTimeout M2 (by third party)	0xcbc52d10f776c4efa93d97e32f67bb84ec3f0cd1c68c8b054d94301744c1f03e
