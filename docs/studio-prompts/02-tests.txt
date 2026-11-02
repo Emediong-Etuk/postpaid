@@ -1,0 +1,11 @@
+PHASE 2: the full test suite for contracts/PostPaidEscrow.sol (already in this workspace, written last turn). Default preset.
+
+Follow the attached test plan exactly: context/docs/spec/TEST_PLAN.md (and the contract spec context/docs/spec/PostPaidEscrow.spec.md for reference).
+
+1. Write contracts/test/mocks/MockUSDC.sol (+ a tiny fee-on-transfer mock), contracts/test/PostPaidEscrow.t.sol (unit tests 1–16 + fuzz tests), contracts/test/PostPaidEscrow.invariant.t.sol (handler-based invariants) and contracts/test/ArcFork.t.sol (skips when ARC_RPC_URL is unset). Delete contracts/test/PostPaidSmoke.t.sol at the end if everything it checked is covered.
+2. Do NOT change contracts/PostPaidEscrow.sol. If a test reveals a real contract bug, stop and report it (test name, expected vs actual) instead of fixing the contract.
+3. Run `forge test` until everything is green (unit, fuzz with 1000 runs, invariants with 256 runs × depth 64).
+4. Run `forge coverage --report summary` and iterate on tests until contracts/PostPaidEscrow.sol has ≥95% line and ≥90% branch coverage.
+5. Do NOT deploy and do NOT touch the frontend.
+
+In your final answer give: (a) the forge test summary (suites, passed/failed counts), (b) the coverage table row for PostPaidEscrow.sol (lines, statements, branches, functions), (c) any contract bug found (or "none"), (d) anything from the plan you could not test and why, (e) the files written or deleted.

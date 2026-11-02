@@ -8,8 +8,8 @@
 | Phase | Status |
 |---|---|
 | 0 — Setup & discovery | ✅ done |
-| 1 — Contract (in Arc Studio) | ✅ done: waiting for Greg's OK on 5 small deviations + "go" |
-| 2 — Tests | — |
+| 1 — Contract (in Arc Studio) | ✅ done (deviations approved 2026-11-02) |
+| 2 — Tests | 🔄 in progress (Studio turn #2) |
 | 3 — Security & testnet | — |
 | 4 — App | — |
 | 5 — Mainnet deploy | — |
