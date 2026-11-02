@@ -19,7 +19,7 @@
 ## Next action
 
 1. ✅ 2026-11-02: network to arc.io hosts is open and the repo is pushed to https://github.com/Emediong-Etuk/postpaid. ⚠️ `ARC_STUDIO_TOKEN` is set (54 chars, no stray quotes or spaces) but studio.arc.io **rejects it** (`arc-studio doctor`: "token rejected"). Greg needs to mint a fresh token.
-2. Greg: answer the remaining open questions (wallet B, owner wallet, fee, C1–C8 defaults), then say "go".
+2. Greg: (a) mint a fresh Arc Studio token, update `ARC_STUDIO_TOKEN`, open a new session; (b) send an EVM (0x…) wallet B — needed by Phase 3, not Phase 1; (c) say "go".
 3. Claude: confirm `arc-studio whoami`, re-verify §4 on docs.arc.io, then start Phase 1 with the first Studio prompt.
 
 ## Mode
@@ -73,10 +73,24 @@ Nothing contradicts §4 so far.
 - 2026-11-01: `solc 0.8.38`, `evm_version = "prague"` (conservative; Arc supports Osaka). Revisit if Studio's default differs.
 - 2026-11-01: libraries are OZ v5.6.1 and forge-std v1.17.0, as submodules.
 
+## Answers received (2026-11-02)
+- Microgrants: **still accepting submissions** (Greg confirmed).
+- Owner + fee recipient: **wallet A** `0x553f9D115bCCafD5d4b4a254f2B2d6E23B66CA17`. Fee: **100 bps**.
+- C1–C8 spec clarifications: **defaults accepted**:
+  - C1 `milestoneActions` returns state-only flags; the UI combines them with the wallet's role.
+  - C2 a cancelled deal stays `Cancelled` and emits no `DealClosed`.
+  - C3 `resolveStaleDispute` emits `DisputeResolved(creatorBps = 5000)`.
+  - C4 `totalEscrowed` and `totalWithdrawable` are public.
+  - C5 `creatorExit` reverts when no milestone is Pending.
+  - C6 after an exit, a revision request makes the milestone refundable after its due date (no change).
+  - C7 a blocklisted account's balance can stay stuck (no withdraw-to-another-address); disclosed as a trust assumption.
+  - C8 the repo mirrors Studio's layout (`contracts/` + `src/` at the root), with `VITE_*` env vars instead of `NEXT_PUBLIC_*`.
+- Wallet B: Greg sent `45kASeu3EqH3qRzHkEwk8pNQwkEeQVtR34NEeET4PMd8`, which is a **Solana address**. Still need an EVM 0x… address.
+
 ## Open questions for Greg (see the Phase 0 report in chat)
-1. Is the Arc Microgrants window still open? One third-party listing said the deadline was **Oct 15, 2026**.
-2. Network allowlist and `ARC_STUDIO_TOKEN` (see the next action).
-3. ~~X handle, GitHub, wallet A~~ ✅ received 2026-11-02. Still needed: **wallet B** (creator, must differ from A), **owner/fee-recipient wallet** (default proposal: wallet A), **fee bps** (default proposal: 100).
+1. ~~Microgrants still open?~~ ✅ yes.
+2. `ARC_STUDIO_TOKEN` is rejected; needs a fresh token.
+3. ~~X, GitHub, wallet A, owner, fee~~ ✅. Still needed: **EVM wallet B**.
 4. "Pushed from Arc Studio": does the Studio web UI have GitHub export? The CLI has none.
-5. Repo layout: mirror Studio's layout (`contracts/` and `src/` at the app root) or keep §10's layout?
-6. Contract-spec clarifications (C1–C7 in the chat report).
+5. ~~Repo layout~~ ✅ mirror Studio (C8).
+6. ~~Contract-spec clarifications~~ ✅ defaults accepted.

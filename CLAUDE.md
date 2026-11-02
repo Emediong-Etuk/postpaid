@@ -15,9 +15,9 @@ You are my senior smart-contract and full-stack engineer and my hackathon co-pil
 - X handle: `@gregwrites_yy`
 - GitHub username: `Emediong-Etuk` (repo: https://github.com/Emediong-Etuk/postpaid)
 - Brand/test wallet A (pays): `0x553f9D115bCCafD5d4b4a254f2B2d6E23B66CA17`
-- Creator/test wallet B (gets paid): `[WALLET_B]` — not created yet; must differ from A (contract rejects self-deals)
-- Fee recipient + contract owner: `[OWNER_WALLET]`
-- Protocol fee in basis points (suggest 100 = 1%): `[FEE_BPS]`
+- Creator/test wallet B (gets paid): `[WALLET_B]` — given `45kASeu3…PMd8` on 2026-11-02, but that is a Solana (base58) address and cannot be used on Arc (EVM). Need a 0x… address that differs from A.
+- Fee recipient + contract owner: `0x553f9D115bCCafD5d4b4a254f2B2d6E23B66CA17` (= wallet A)
+- Protocol fee in basis points: `100` (1%)
 
 ---
 
