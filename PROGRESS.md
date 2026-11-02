@@ -11,16 +11,16 @@
 | 1 — Contract (in Arc Studio) | ✅ done (deviations approved 2026-11-02) |
 | 2 — Tests | ✅ done: 155/155 green, 100% coverage |
 | 3 — Security & testnet | ✅ done: SECURITY.md, testnet deploy + verified, full demo run on testnet (11 txs) |
-| 4 — App | 🔄 in progress (Studio turn #4) |
+| 4 — App | ✅ built in Studio; E2E-tested on a testnet fork (create → accept → submit → approve → withdraw) |
 | 5 — Mainnet deploy | — |
 | 6 — Mainnet demo | — |
 | 7 — Ship | — |
 
 ## Next action
 
-1. Greg: say "go" for Phase 4 (app).
-2. Claude (Phase 4): send Studio the §8 app spec against testnet contract `0x4e51c6f82fb8dadd51d650607f05cbb937d3cfe5` (deploy block 70378581); pull the app into `src/`; review it against §8; deploy a public preview (Studio → Vercel/Netlify integration); Greg clicks through the flow with browser wallets on testnet.
-3. Before Phase 6 (mainnet demo), Greg needs: an **EVM wallet B** (0x…) and **~2 USDC on Arc mainnet** in wallet A (+ ~0.3 in B), at most ~$2 of real money.
+1. Greg: say "go" for Phase 5. Before that, connect **Vercel** (free) in Arc Studio → Integrations menu → "Connect Vercel", so Studio can host the app at a public URL.
+2. Greg (Phase 5 → 6): an **EVM wallet B** (0x…) and **~2 USDC on Arc mainnet** in wallet A (+ ~0.3 in B).
+3. Claude (Phase 5): one Studio turn for the small UI fixes (ENS lookups, badge overlap, balance label); public deploy of the **testnet** build first, so Greg can click through with a real wallet; then prepare the mainnet deploy (Greg signs), verify the source, switch the env to mainnet and redeploy.
 
 ## Testnet wallets (throwaway, testnet only)
 Encrypted keystores in `~/.foundry/keystores/pp-testnet-{brand,creator,keeper}`, with the password in `~/.postpaid-testnet/pw` (0600, never committed). They live only in this container: if it's recycled, make new ones (`arc-cast wallet new`) and re-fund them. They must never hold mainnet funds.
@@ -100,6 +100,7 @@ Studio's live preview (`https://<sandbox>.preview.studio.arc.io`) needs a `_prev
 - 2026-11-02: switched to `evm_version = "osaka"`: docs say Arc targets Osaka, and Arc Foundry defaults to it.
 - 2026-11-02: Phase 1 contract generated in Studio (turn #1); local copy is byte-identical to Studio's.
 - 2026-11-02: contract source verification uses the Blockscout v2 API (`scripts/verify-blockscout.sh`), because `arc-forge verify-contract` needs binaries.soliditylang.org (blocked here). The testnet contract is fully verified.
+- 2026-11-02: Phase 4 app generated in Studio (turn #4) and E2E-tested on an Arc-mode fork (`scripts/e2e-fork.cjs`).
 - 2026-11-02: Phase 3 testnet rehearsal of the §9 demo passed end to end (deal #1 Closed, all balances as expected).
 - 2026-11-02: Phase 2 tests generated in Studio (turn #2): 155 tests, 100% coverage, no contract changes. The smoke test was removed (superseded).
 - 2026-11-01: libraries are OZ v5.6.1 and forge-std v1.17.0, as submodules.
