@@ -7,9 +7,9 @@
 | Contract | `0x…` (explorer link) |
 | Example tx (creator Withdraw) | … |
 | createDeal tx | … |
-| Repo | `https://github.com/[MY_GITHUB]/postpaid` |
+| Repo | `https://github.com/Emediong-Etuk/postpaid` |
 | Video | … |
-| Builder profile | `https://x.com/[MY_X_HANDLE]` |
+| Builder profile | `https://x.com/gregwrites_yy` |
 
 ## Description (≤ 150 words)
 

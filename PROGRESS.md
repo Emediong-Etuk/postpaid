@@ -18,8 +18,9 @@
 
 ## Next action
 
-1. Greg: allow the domains below in the cloud environment's network settings, add `ARC_STUDIO_TOKEN` as an environment secret, answer the open questions, then start a **new session** (settings apply to new sessions).
-2. Claude: run `scripts/setup-sandbox.sh`, confirm `arc-studio whoami` passes, re-verify §4 on docs.arc.io, then start Phase 1 with the first Studio prompt.
+1. ✅ 2026-11-02: network to arc.io hosts is open, `ARC_STUDIO_TOKEN` is set, and the repo is pushed to https://github.com/Emediong-Etuk/postpaid.
+2. Greg: answer the remaining open questions (wallet B, owner wallet, fee, C1–C8 defaults), then say "go".
+3. Claude: confirm `arc-studio whoami`, re-verify §4 on docs.arc.io, then start Phase 1 with the first Studio prompt.
 
 ## Mode
 
@@ -75,7 +76,7 @@ Nothing contradicts §4 so far.
 ## Open questions for Greg (see the Phase 0 report in chat)
 1. Is the Arc Microgrants window still open? One third-party listing said the deadline was **Oct 15, 2026**.
 2. Network allowlist and `ARC_STUDIO_TOKEN` (see the next action).
-3. The `[BRACKETS]` values (X handle, GitHub, wallets A/B, owner, fee bps).
+3. ~~X handle, GitHub, wallet A~~ ✅ received 2026-11-02. Still needed: **wallet B** (creator, must differ from A), **owner/fee-recipient wallet** (default proposal: wallet A), **fee bps** (default proposal: 100).
 4. "Pushed from Arc Studio": does the Studio web UI have GitHub export? The CLI has none.
 5. Repo layout: mirror Studio's layout (`contracts/` and `src/` at the app root) or keep §10's layout?
 6. Contract-spec clarifications (C1–C7 in the chat report).

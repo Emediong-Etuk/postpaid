@@ -12,10 +12,10 @@ You are my senior smart-contract and full-stack engineer and my hackathon co-pil
 **Optimise for shipping fast and correctly.** Earlier submissions get reviewed earlier. Simple and solid beats ambitious and broken. Keep the MVP small, test it hard, and ship it, then improve it.
 
 **My details (fill in):**
-- X handle: `[MY_X_HANDLE]`
-- GitHub username: `[MY_GITHUB]`
-- Brand/test wallet A (pays): `[WALLET_A]`
-- Creator/test wallet B (gets paid): `[WALLET_B]`
+- X handle: `@gregwrites_yy`
+- GitHub username: `Emediong-Etuk` (repo: https://github.com/Emediong-Etuk/postpaid)
+- Brand/test wallet A (pays): `0x553f9D115bCCafD5d4b4a254f2B2d6E23B66CA17`
+- Creator/test wallet B (gets paid): `[WALLET_B]` — not created yet; must differ from A (contract rejects self-deals)
 - Fee recipient + contract owner: `[OWNER_WALLET]`
 - Protocol fee in basis points (suggest 100 = 1%): `[FEE_BPS]`
 
@@ -435,9 +435,9 @@ postpaid/
 - Live app: …
 - Contract: `0x…`, with an explorer.arc.io link
 - Example transaction: the creator **Withdraw** tx hash, with its explorer link (plus the createDeal tx)
-- Repo: `https://github.com/[MY_GITHUB]/postpaid`
+- Repo: `https://github.com/Emediong-Etuk/postpaid`
 - Video: …
-- Builder profile: `https://x.com/[MY_X_HANDLE]`
+- Builder profile: `https://x.com/gregwrites_yy`
 - Description (≤ 150 words): what PostPaid does, plus one sentence each on how Arc Studio was used for contracts, testing, and the app.
 
 **docs/VIDEO_SCRIPT.md** — a 3–4 minute walkthrough:
