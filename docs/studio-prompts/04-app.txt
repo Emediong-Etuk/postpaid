@@ -1,0 +1,12 @@
+PHASE 4: build the PostPaid frontend in THIS workspace's existing app (Vite + React + TypeScript + wagmi + viem + Tailwind under src/). Default preset.
+
+Follow the attached spec exactly: context/docs/spec/APP_SPEC.md. It is the original app spec (section 8) plus binding adaptations in section 8.1 (contract address on Arc Testnet, env config, routing, gas floor, role logic, error messages, disclosures).
+
+Rules:
+1. Do NOT change or redeploy contracts/PostPaidEscrow.sol. Use the already-deployed Arc Testnet contract 0x4e51c6f82fb8dadd51d650607f05cbb937d3cfe5 (deploy block 70378581) and the ABI in contracts/contract-metadata/PostPaidEscrow.json.
+2. Pages: / (landing with live stats), /new (create deal: approve exact USDC then createDeal), /deal/:id (role-aware deal page with milestone cards, timeline, share buttons), /dashboard (withdrawable balance + withdraw, tabs as brand/creator/arbiter, status filter).
+3. All amounts are 6-decimal USDC; maxFeePerGas never below 20 gwei; never show "ETH".
+4. Run `bun run typecheck`, `bun run lint` and `bun run check` (or the equivalent scripts) until clean, and make sure the preview loads with no console errors.
+5. Don't touch the tests in contracts/test.
+
+In your final answer list: (a) the pages and main components you built, (b) how role-awareness and milestoneActions are wired, (c) how gas and errors are handled, (d) the env vars and their defaults, (e) anything from the spec you could not do and why, (f) the files written.

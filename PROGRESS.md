@@ -11,7 +11,7 @@
 | 1 — Contract (in Arc Studio) | ✅ done (deviations approved 2026-11-02) |
 | 2 — Tests | ✅ done: 155/155 green, 100% coverage |
 | 3 — Security & testnet | ✅ done: SECURITY.md, testnet deploy + verified, full demo run on testnet (11 txs) |
-| 4 — App | — |
+| 4 — App | 🔄 in progress (Studio turn #4) |
 | 5 — Mainnet deploy | — |
 | 6 — Mainnet demo | — |
 | 7 — Ship | — |
@@ -84,6 +84,9 @@ New details:
 - Native USDC `Transfer` logs (EIP-7708) come from the system emitter `0xffffFFFfFFffffffffffffffFfFFFfffFFFfFFfE`, so the app timeline must use PostPaid's own events.
 - A value transfer to `address(0)` reverts. A blocklist revert still consumes gas.
 - **Contract verification:** Blockscout, via `arc-forge verify-contract <addr> src/X.sol:X --chain-id <id> --verifier blockscout --verifier-url https://explorer.testnet.arc.io/api/` (testnet example from `build/deploy-on-arc.md`; mainnet presumably `https://explorer.arc.io/api/`, to confirm in Phase 5).
+
+## Hosting note
+Studio's live preview (`https://<sandbox>.preview.studio.arc.io`) needs a `_preview_token`, so it **isn't a public link**. For the public URL, use Studio's Vercel/Netlify integration (Greg connects it in the Studio UI) or deploy the GitHub repo to Vercel.
 
 ## Repo layout (mirrors the Arc Studio workspace, decision C8)
 - `foundry.toml` + `remappings.txt` at the root (copied from Studio): `src = "contracts"`, tests in `contracts/test/`, out/cache under `contracts/`.
