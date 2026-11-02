@@ -9,3 +9,6 @@ step	actor	action	tx
 6	pp-testnet-creator	withdraw (creator, 0.297 USDC)	0xf5738180438b60af7149bced08a379e0a67c33e39868847c12b7cc54c668e93a
 7a	pp-testnet-creator	submitMilestone M2	0x3468ffb6884b585a4ec2b0b1da0e61609fc60439e07bf061ceb4981ac0450c35
 7b	pp-testnet-keeper	claimAfterTimeout M2 (by third party)	0xcbc52d10f776c4efa93d97e32f67bb84ec3f0cd1c68c8b054d94301744c1f03e
+8	pp-testnet-keeper	refundMilestone M3 (by third party → brand)	0x46c10ad8ac65570e17339adb53897fe80fe9c91cd31a95b7d3f7c4e3b1d09c77
+9a	pp-testnet-creator	withdraw (creator, 0.297 USDC)	0x4b9de382366e15fd09180fa4c0631d751b23f8039ee27aebbddec684acf0c64a
+9b	pp-testnet-brand	withdraw (brand refund, 0.30 USDC)	0x97ca0ca8abaafc3dad7d67ec127dc373797b2e547be0a4e3510d3f5d366a2055
