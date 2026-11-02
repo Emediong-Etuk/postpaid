@@ -18,7 +18,7 @@
 
 ## Next action
 
-1. ✅ 2026-11-02: network to arc.io hosts is open, `ARC_STUDIO_TOKEN` is set, and the repo is pushed to https://github.com/Emediong-Etuk/postpaid.
+1. ✅ 2026-11-02: network to arc.io hosts is open and the repo is pushed to https://github.com/Emediong-Etuk/postpaid. ⚠️ `ARC_STUDIO_TOKEN` is set (54 chars, no stray quotes or spaces) but studio.arc.io **rejects it** (`arc-studio doctor`: "token rejected"). Greg needs to mint a fresh token.
 2. Greg: answer the remaining open questions (wallet B, owner wallet, fee, C1–C8 defaults), then say "go".
 3. Claude: confirm `arc-studio whoami`, re-verify §4 on docs.arc.io, then start Phase 1 with the first Studio prompt.
 
