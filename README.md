@@ -19,4 +19,6 @@ bash scripts/setup-sandbox.sh
 arc-forge test --network arc
 ```
 
+Coverage: `arc-forge coverage --report summary`. Optional fork test against real Arc USDC: `ARC_RPC_URL=https://rpc.mainnet.arc.io arc-forge test --mc ArcFork`.
+
 The layout mirrors the Arc Studio workspace: `foundry.toml` at the root, Solidity in `contracts/`, tests in `contracts/test/`.

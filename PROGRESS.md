@@ -9,7 +9,7 @@
 |---|---|
 | 0 — Setup & discovery | ✅ done |
 | 1 — Contract (in Arc Studio) | ✅ done (deviations approved 2026-11-02) |
-| 2 — Tests | 🔄 in progress (Studio turn #2) |
+| 2 — Tests | ✅ done: 155/155 green, 100% coverage, waiting for "go" |
 | 3 — Security & testnet | — |
 | 4 — App | — |
 | 5 — Mainnet deploy | — |
@@ -18,9 +18,8 @@
 
 ## Next action
 
-1. Greg: approve the 5 deviations in `docs/ARC_STUDIO_LOG.md` (#1) and say "go" for Phase 2.
-2. Claude (Phase 2): send Studio the §6 test plan (unit + fuzz + invariant + MockUSDC), pull it back, run `arc-forge test --network arc` + coverage locally, iterate in Studio until green with ≥95% line / ≥90% branch coverage.
-3. Still needed from Greg before Phase 3: an **EVM wallet B** (0x…).
+1. Greg: say "go" for Phase 3, and send an **EVM wallet B** (0x…) plus confirm whether Claude may create throwaway **testnet-only** wallets in the sandbox for the scripted rehearsal.
+2. Claude (Phase 3): write `docs/SECURITY.md` (§7 checklist + attacker read-through), run Slither locally, have Studio deploy to **Arc Testnet**, verify the source on the testnet explorer (Blockscout), then run the §9 demo flow with `arc-cast` and record the tx hashes.
 
 ## Mode
 
@@ -93,6 +92,7 @@ New details:
 - 2026-11-01: `solc 0.8.38`, `evm_version = "prague"`.
 - 2026-11-02: switched to `evm_version = "osaka"`: docs say Arc targets Osaka, and Arc Foundry defaults to it.
 - 2026-11-02: Phase 1 contract generated in Studio (turn #1); local copy is byte-identical to Studio's.
+- 2026-11-02: Phase 2 tests generated in Studio (turn #2): 155 tests, 100% coverage, no contract changes. The smoke test was removed (superseded).
 - 2026-11-01: libraries are OZ v5.6.1 and forge-std v1.17.0, as submodules.
 
 ## Answers received (2026-11-02)
