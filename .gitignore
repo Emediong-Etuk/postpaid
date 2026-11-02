@@ -27,3 +27,6 @@ dist/
 
 contracts/out/
 contracts/cache/
+
+# foundry script output
+broadcast/

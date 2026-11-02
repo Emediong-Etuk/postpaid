@@ -1,0 +1,13 @@
+PHASE 5a: small UI fixes, then publish the app publicly on Vercel (the Vercel integration is now connected). Still ARC TESTNET; do NOT change or redeploy any contract.
+
+Fixes (keep everything else exactly as is):
+1. Remove Ethereum mainnet from the wagmi config (chains + transports in src/config.ts) and make sure the app never calls an Ethereum mainnet RPC (no ENS name/avatar lookups anywhere, including ConnectKit). Only Arc chains remain (active chain + the other Arc network for switching).
+2. The floating "Built with Arc Studio" badge (src/main.tsx) must not cover page content: keep it, but on screens < 640px render it inside the footer (static) instead of floating, and on larger screens keep it fixed bottom-right with enough bottom padding on <main> that it never overlaps content.
+3. The header USDC balance chip (UsdcBalance in src/components/Layout.tsx) should read e.g. "18.16 USDC" (2 decimals is fine for display; keep the exact value in the title tooltip).
+
+Then:
+4. Run `bun run check` (ignore only errors in scripts/compass-deploy.ts if they are pre-existing) and a production build.
+5. Deploy the production build to Vercel with default env (VITE_CHAIN unset → Arc Testnet). Deep links like /deal/1 and /dashboard must work on a fresh load (vercel.json rewrite is already there).
+6. Open the deployed URL's /deal/1 and confirm it shows "PostPaid launch campaign" as Closed.
+
+In your final answer give: (a) the public Vercel URL, (b) the files changed, (c) confirmation that no request goes to an Ethereum mainnet RPC, (d) how to redeploy later with different env vars (VITE_CHAIN, VITE_ESCROW_ADDRESS, VITE_DEPLOY_BLOCK) — we will switch to Arc mainnet in the next step.
