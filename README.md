@@ -16,5 +16,7 @@ bash scripts/setup-sandbox.sh
 ```
 
 ```bash
-cd contracts && FOUNDRY_PROFILE=arc arc-forge test
+arc-forge test --network arc
 ```
+
+The layout mirrors the Arc Studio workspace: `foundry.toml` at the root, Solidity in `contracts/`, tests in `contracts/test/`.

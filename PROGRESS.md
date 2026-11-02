@@ -8,7 +8,7 @@
 | Phase | Status |
 |---|---|
 | 0 — Setup & discovery | ✅ done |
-| 1 — Contract (in Arc Studio) | 🔄 in progress (Studio app `7dce8f44-1629-4058-a90d-748aee960e78`) |
+| 1 — Contract (in Arc Studio) | ✅ done: waiting for Greg's OK on 5 small deviations + "go" |
 | 2 — Tests | — |
 | 3 — Security & testnet | — |
 | 4 — App | — |
@@ -18,9 +18,9 @@
 
 ## Next action
 
-1. ✅ 2026-11-02: network to arc.io hosts is open and the repo is pushed to https://github.com/Emediong-Etuk/postpaid. ⚠️ `ARC_STUDIO_TOKEN` is set (54 chars, no stray quotes or spaces) but studio.arc.io **rejects it** (`arc-studio doctor`: "token rejected"). Greg needs to mint a fresh token.
-2. Greg: (a) mint a fresh Arc Studio token, update `ARC_STUDIO_TOKEN`, open a new session; (b) send an EVM (0x…) wallet B — needed by Phase 3, not Phase 1; (c) say "go".
-3. Claude: confirm `arc-studio whoami`, re-verify §4 on docs.arc.io, then start Phase 1 with the first Studio prompt.
+1. Greg: approve the 5 deviations in `docs/ARC_STUDIO_LOG.md` (#1) and say "go" for Phase 2.
+2. Claude (Phase 2): send Studio the §6 test plan (unit + fuzz + invariant + MockUSDC), pull it back, run `arc-forge test --network arc` + coverage locally, iterate in Studio until green with ≥95% line / ≥90% branch coverage.
+3. Still needed from Greg before Phase 3: an **EVM wallet B** (0x…).
 
 ## Mode
 
@@ -82,9 +82,17 @@ New details:
 - A value transfer to `address(0)` reverts. A blocklist revert still consumes gas.
 - **Contract verification:** Blockscout, via `arc-forge verify-contract <addr> src/X.sol:X --chain-id <id> --verifier blockscout --verifier-url https://explorer.testnet.arc.io/api/` (testnet example from `build/deploy-on-arc.md`; mainnet presumably `https://explorer.arc.io/api/`, to confirm in Phase 5).
 
+## Repo layout (mirrors the Arc Studio workspace, decision C8)
+- `foundry.toml` + `remappings.txt` at the root (copied from Studio): `src = "contracts"`, tests in `contracts/test/`, out/cache under `contracts/`.
+- OpenZeppelin 5.6.1 comes from `node_modules/` (npm), as in Studio. forge-std is a submodule in `lib/`.
+- Run tests with `arc-forge test --network arc`. That flag switches to Arc rules without editing Studio's `foundry.toml`.
+- Studio's own files (`package.json`, `src/` Vite app, `scripts/`) get pulled in Phase 4.
+- Studio's app template: Vite + React + wagmi + viem 2.57.5 + ConnectKit + Tailwind. It can deploy to **Vercel or Netlify** through its Integrations menu, which answers §8 hosting.
+
 ## Decisions log
 - 2026-11-01: `solc 0.8.38`, `evm_version = "prague"`.
 - 2026-11-02: switched to `evm_version = "osaka"`: docs say Arc targets Osaka, and Arc Foundry defaults to it.
+- 2026-11-02: Phase 1 contract generated in Studio (turn #1); local copy is byte-identical to Studio's.
 - 2026-11-01: libraries are OZ v5.6.1 and forge-std v1.17.0, as submodules.
 
 ## Answers received (2026-11-02)

@@ -32,9 +32,11 @@ if [ ! -x "$SOLC" ]; then
   install -m 0755 "$TMP/solc" "$SOLC"
 fi
 
-# 3. Contract libraries (git submodules).
+# 3. Contract libraries, laid out like the Arc Studio workspace:
+#    forge-std as a git submodule in lib/, OpenZeppelin 5.6.1 from npm (node_modules/).
 cd "$(dirname "$0")/.."
 git submodule update --init --recursive
+[ -d node_modules/@openzeppelin/contracts ] || npm install --no-save --no-package-lock @openzeppelin/contracts@5.6.1
 
 # 4. Arc Studio CLI (needs studio.arc.io reachable + ARC_STUDIO_TOKEN to be useful).
 if ! command -v arc-studio >/dev/null 2>&1; then

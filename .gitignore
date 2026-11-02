@@ -24,3 +24,6 @@ dist/
 # os / editor
 .DS_Store
 *.log
+
+contracts/out/
+contracts/cache/
